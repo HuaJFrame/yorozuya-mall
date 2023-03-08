@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <!-- layer -->
+    <script type="text/javascript" th:src="@{/layer/layer.js}"></script>
+</head>
+<body>
+    <h1>hello</h1>
+</body>
+
+<script th:inline="javascript">
+    //避免是未登录重定向到此
+    $(function() {
+        var message = [[${noLoginMessage}]];
+
+        if(message !== ''){
+            layer.msg(message);
+        }
+    })
+</script>
+</html>

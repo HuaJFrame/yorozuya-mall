@@ -6,7 +6,7 @@ spring:
   # 应用名称
   application:
     # 万事屋商城（主要做秒杀）
-    name: yorozuya-mall
+    name: seckill-mall
   thymeleaf:
     # 关闭thymeleaf缓存
     cache: false
@@ -25,6 +25,29 @@ spring:
       minimum-idle: 5
       # 测试连接是否可以的查询语句
       connection-test-query: select 1
+  # redis配置
+  redis:
+    # ip
+    host: 192.168.137.66
+    # 端口号
+    port: 6379
+    # 密码
+    password: root
+    # 数据库
+    database: 0
+    # 连接池配置
+    lettuce:
+      pool:
+        # 最大连接数， 默认8
+        max-active: 1000
+        # 最长等待时间
+        max-wait: 5000ms
+        # 最大空闲连接
+        max-idle: 200
+        # 最小空闲连接
+        min-idle: 5
+
+
 
 # mybatis-plus配置
 mybatis-plus:
