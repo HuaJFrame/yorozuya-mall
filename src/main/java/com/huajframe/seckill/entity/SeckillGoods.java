@@ -24,12 +24,12 @@ public class SeckillGoods {
      * 秒杀商品ID
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 商品ID
      */
-    private Integer goodsId;
+    private Long goodsId;
 
     /**
      * 秒杀价

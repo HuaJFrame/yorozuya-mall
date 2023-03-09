@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -24,22 +24,22 @@ public class Order {
      * 订单ID
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 用户ID
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 商品ID
      */
-    private Integer goodsId;
+    private Long goodsId;
 
     /**
      * 收获地址ID
      */
-    private Integer deliverAddrId;
+    private Long deliverAddrId;
 
     /**
      * 商品名称
@@ -69,10 +69,10 @@ public class Order {
     /**
      * 订单创建时间
      */
-    private LocalDateTime createDate;
+    private Date createDate;
 
     /**
      * 支付时间
      */
-    private LocalDateTime payDate;
+    private Date payDate;
 }

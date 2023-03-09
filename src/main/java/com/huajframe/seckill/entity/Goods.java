@@ -24,7 +24,7 @@ public class Goods {
      * 商品ID
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 商品名称
@@ -52,7 +52,7 @@ public class Goods {
     private BigDecimal goodsPrice;
 
     /**
-     * 商品库存
+     * 商品库存, -1表示无限制
      */
     private Integer goodsStock;
 }

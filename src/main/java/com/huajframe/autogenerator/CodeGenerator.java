@@ -36,7 +36,7 @@ public class CodeGenerator {
                 .globalConfig((scanner, builder) -> builder.author(scanner.apply("=====================全局配置=======================\n请输入作者名称？"))
                         .outputDir(System.getProperty("user.dir") + "/src/main/java")
                         .commentDate("yyyy-MM-dd")
-                        .dateType(DateType.TIME_PACK)
+                        .dateType(DateType.ONLY_DATE)
                         .fileOverride()
                         .disableOpenDir()
                 )

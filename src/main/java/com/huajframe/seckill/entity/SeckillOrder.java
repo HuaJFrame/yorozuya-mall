@@ -21,20 +21,20 @@ public class SeckillOrder {
      * 订单ID
      */
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
      * 用户ID
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 订单ID
      */
-    private Integer orderId;
+    private Long orderId;
 
     /**
      * 商品ID
      */
-    private Integer goodsId;
+    private Long goodsId;
 }

@@ -18,8 +18,11 @@ public enum RespBeanEnum {
     MOBILE_ERROR(500211,"手机号码格式错误"),
     BIND_ERROR(500212, "参数校验错"),
     UNLOGIN(500213, "暂时无法访问, 请先登录"),
-    // LOGINED(500214, "亲，已经登录过了啊！"),
-    SESSION_ERROR(500215,"session不存在或者已经失效");
+    LOGINED(500214, "亲，已经登录过了啊！"),
+    SESSION_ERROR(500215,"session不存在或者已经失效"),
+    //秒杀模块
+    EMPTY_STOCK(500500, "库存不足"),
+    REPEATE_ERROR(500501, "该商品每人限购一件");
 
 
     private final Integer code;
