@@ -241,12 +241,12 @@ public class CookieUtil {
      * @param cookieMaxage 有效时间
      * @param encodeString 编码格式
      */
-    private static final void doSetCookie(HttpServletRequest request,
-                                          HttpServletResponse response,
-                                          String cookieName,
-                                          String cookieValue,
-                                          int cookieMaxage,
-                                          String encodeString) {
+    private static void doSetCookie(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    String cookieName,
+                                    String cookieValue,
+                                    int cookieMaxage,
+                                    String encodeString) {
         try {
             if (cookieValue == null) {
                 cookieValue = "";
@@ -259,7 +259,6 @@ public class CookieUtil {
             }
             if (null != request) {// 设置域名的cookie
                 String domainName = getDomainName(request);
-                System.out.println(domainName);
                 if (!"localhost".equals(domainName)) {
                     cookie.setDomain(domainName);
                 }
@@ -272,7 +271,7 @@ public class CookieUtil {
     }
 
     /**
-     * 得到cookie的值
+     * 获得域名或ip地址
      *
      * @param request
      * @return
@@ -281,7 +280,7 @@ public class CookieUtil {
         String domainName = null;
         // 通过request对象获取访问的url地址
         String serverName = request.getRequestURL().toString();
-        if (serverName == null || serverName.equals("")) {
+        if ("".equals(serverName)) {
             domainName = "";
         } else {
             // 将url转换为小写
@@ -289,6 +288,9 @@ public class CookieUtil {
             // 如果url地址是以http://开头 将http://截取
             if (serverName.startsWith("http://")) {
                 serverName = serverName.substring(7);
+            }
+            if (serverName.startsWith("https://")) {
+                serverName = serverName.substring(8);
             }
             //截取后的长度
             int end = serverName.length();
@@ -299,21 +301,26 @@ public class CookieUtil {
             }
             // 截取
             serverName = serverName.substring(0, end);
-            // 根据"."进行分割
-            final String[] domains = serverName.split("\\.");
-            int len = domains.length;
-            if (len > 3) {
-                // www.xxx.com.cn
-                domainName = domains[len - 3] + "." + domains[len - 2] + "." +
-                        domains[len - 1];
-            } else if (len <= 3 && len > 1) {
-                // xxx.com or xxx.cn
-                domainName = domains[len - 2] + "." + domains[len - 1];
-            } else {
+            if(serverName.matches(".*[a-zA-z].*")){
+                // 根据"."进行分割
+                final String[] domains = serverName.split("\\.");
+                int len = domains.length;
+                if (len > 3) {
+                    // www.xxx.com.cn
+                    domainName = domains[len - 3] + "." + domains[len - 2] + "." +
+                            domains[len - 1];
+                } else if (len > 1) {
+                    // xxx.com or xxx.cn
+                    domainName = domains[len - 2] + "." + domains[len - 1];
+                } else {
+                    domainName = serverName;
+                }
+            }else{
+                //127.0.0.1——ip地址情况
                 domainName = serverName;
             }
         }
-        if (domainName != null && domainName.indexOf(":") > 0) {
+        if (domainName.indexOf(":") > 0) {
             String[] ary = domainName.split(":");
             domainName = ary[0];
         }

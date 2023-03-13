@@ -4,6 +4,10 @@
 ## 技术栈
 Spring Boot, Redis, Mybaits-plus, MySQL, // TODO
 
+测压工具：Jmeter
+
+[测压效果](jmeter/README.md)
+
 ## 模块介绍
 ### 登录模块
 1. 生成UUID存入cookie，根据uuid存储和获取redis的用户数据，实现分布式session的处理
